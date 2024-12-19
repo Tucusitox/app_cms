@@ -23,14 +23,14 @@ class SendEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($asunto, $codigo = null, $token = null, $nombre = null, $correoContact = null, $mensaje)
+    public function __construct(array $data)
     {
-        $this->asunto = $asunto;
-        $this->codigo = $codigo;
-        $this->token = $token;
-        $this->nombre = $nombre;
-        $this->correoContact = $correoContact;
-        $this->mensaje = $mensaje;
+        $this->asunto = $data['asunto'];
+        $this->codigo = $data['codigo'] ?? null;
+        $this->token = $data['token'] ?? null;
+        $this->nombre = $data['nombre'] ?? null;
+        $this->correoContact = $data['correoContact'] ?? null;
+        $this->mensaje = $data['mensaje'];
     }
 
     /**

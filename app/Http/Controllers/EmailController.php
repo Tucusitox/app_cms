@@ -5,28 +5,26 @@ namespace App\Http\Controllers;
 use App\Jobs\SendEmailJob;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class EmailController
 {   
-    // ORDEN DEL LALMADO DE VARIABLES, COLOCAR COMO NULL LAS QUE NO SE NECESITEN
-    // $asunto;
-    // $codigo;
-    // $token;
-    // $nombre;
-    // $correoContact;
-    // $mensaje;
-    // $destinatario;
+    // ENIVAR CORREO DE CONFIRMACION AL USUARIO CON UN TOKEN
+    public function emailConfirm($id_user, $destinatario)
+    {
+        $token = Str::random(50);
+        $mensaje = "Estimado usuario confirme su correo con un clik en el botón:";
 
+        User::where('user_id', $id_user)
+        ->update(['user_token' => $token]);
 
-    // ENIVAR CORREO DE CONFIRMACION AL USUARIO CON UN CODIGO ALEATORIO
-    // public function emailConfirm($id_user, $destinatario)
-    // {
-    //     // GENERAR UPDATE EN LA TABLA CON EL CODIGO DE CONFIRMACION
-    //     User::where('user_id', $id_user)->update(['email_verified' => Hash::make($codigo)]);
-    //     // ENVIAR CORREO AL USUARIO MEDIANTE UN JOB EN SEGUNDO PLANO
-    //     $mensaje = "Estimado usuario confirme su correo con el siguiente código:";
-    //     dispatch(new SendEmailJob($codigo, null, null, null, $mensaje, $destinatario));
-    // }
+        // LAMAMOS A LA CLASE CONSTRUCTORA PARA ENVIAR EL CORREO
+        dispatch(new SendEmailJob([
+            'token' => $token,
+            'mensaje' => $mensaje,
+            'destinatario' => $destinatario,
+        ]));
+    }
 
     // ENIVAR CORREO DE CONFIRMACION AL USUARIO CON UN CODIGO ALEATORIO
     public function recoverPassword($id_user, $destinatario)
@@ -38,11 +36,20 @@ class EmailController
         for ($i = 0; $i < $longitud; $i++) {
             $codigo .= $caracteres[rand(0, strlen($caracteres) - 1)];
         }
-        User::where('user_id', $id_user)->update(['password' => Hash::make($codigo)]); //-> GENERAR UPDATE EN LA TABLA CON LA CONTRASEÑA
+        User::where('user_id', $id_user)
+        ->update(['password' => Hash::make($codigo)]);
+
         // ENVIAR CORREO AL USUARIO MEDIANTE UN JOB EN SEGUNDO PLANO
         $asunto = "Codigo de recuperación";
         $mensaje = "Estimado usuario recupere su contraseña con el siguiente código:";
-        dispatch(new SendEmailJob($asunto, $codigo, null, null, null, $mensaje, $destinatario));
+
+        // LAMAMOS A LA CLASE CONSTRUCTORA PARA ENVIAR EL CORREO
+        dispatch(new SendEmailJob([
+            'asunto' => $asunto,
+            'codigo' => $codigo,
+            'mensaje' => $mensaje,
+            'destinatario' => $destinatario,
+        ]));
     }
 
     // METODO PARA EL FORMULARIO DE CONTACTANOS
@@ -50,6 +57,14 @@ class EmailController
     {
         $asunto = "Página de contacto";
         $destinatario = "kuramasenin555@gmail.com";
-        dispatch(new SendEmailJob($asunto, null, null, $nombre, $correoContact, $mensaje, $destinatario));
+
+        // LAMAMOS A LA CLASE CONSTRUCTORA PARA ENVIAR EL CORREO
+        dispatch(new SendEmailJob([
+            'asunto' => $asunto,
+            'nombre' => $nombre,
+            'correoContact' => $correoContact,
+            'mensaje' => $mensaje,
+            'destinatario' => $destinatario,
+        ]));
     }
 }

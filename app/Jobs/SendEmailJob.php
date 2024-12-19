@@ -22,27 +22,30 @@ class SendEmailJob implements ShouldQueue
     protected $mensaje;
     protected $destinatario;
 
-    public function __construct($asunto, $codigo = null, $token = null, $nombre = null, $correoContact = null, $mensaje, $destinatario)
+    public function __construct(array $data)
     {
-        $this->asunto = $asunto;
-        $this->codigo = $codigo;
-        $this->token = $token;
-        $this->nombre = $nombre;
-        $this->correoContact = $correoContact;
-        $this->mensaje = $mensaje;
-        $this->destinatario = $destinatario;
+        $this->asunto = $data['asunto'];
+        $this->codigo = $data['codigo'] ?? null;
+        $this->token = $data['token'] ?? null;
+        $this->nombre = $data['nombre'] ?? null;
+        $this->correoContact = $data['correoContact'] ?? null;
+        $this->mensaje = $data['mensaje'];
+        $this->destinatario = $data['destinatario'];
     }
 
     public function handle()
     {
         try {
             Mail::to($this->destinatario)->send(new SendEmail(
-                $this->asunto,
-                $this->codigo,
-                $this->token,
-                $this->nombre,
-                $this->correoContact,
-                $this->mensaje
+                [
+                    'asunto' => $this->asunto,
+                    'codigo' => $this->codigo,
+                    'token' => $this->token,
+                    'nombre' => $this->nombre,
+                    'correoContact' => $this->correoContact,
+                    'mensaje' =>  $this->mensaje,
+                    'destinatario' => $this->destinatario,
+                ]
             ));
         } catch (\Exception $e) {
             error_log('Error al enviar el correo: ' . $e->getMessage());
