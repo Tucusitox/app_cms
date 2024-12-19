@@ -12,7 +12,7 @@ En el archivo .env el SESSION_DRIVER debe estar en "database", así: "SESSION_DR
 
 PASO N2 ---------------------------------------------------------
 
-Entra a phpMyAdmin y crea una nueva base de datos con el nombre "app_elija".
+Entra a phpMyAdmin y crea una nueva base de datos con el nombre "app_cms".
 
 PASO N3 ----------------------------------------------------------
 
