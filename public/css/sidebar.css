@@ -1,0 +1,31 @@
+.cont-menu {
+    width: 100%;
+    max-height: 500px;
+}
+
+.cont-menu nav a {
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    color: #28a745;
+}
+
+.cajaPadre {
+    border-radius: 10px;
+}
+
+.sidebarHeader:hover {
+    color: #28a745;
+    border-left: 13px solid #28a745;
+    background: rgb(161, 153, 153);
+    border-radius: 10px;
+}
+
+.sidebarHeader i {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.opciones a:hover {
+    color: #bdcee7;
+}
