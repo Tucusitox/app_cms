@@ -4,11 +4,10 @@ use App\Http\Controllers\auth\AutenticationController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\NewPasswordController;
 use App\Http\Controllers\auth\RecuperarContrasena;
+use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CrudPostController;
-use App\Http\Controllers\FindRolController;
 use App\Http\Middleware\sessionInactiva;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +34,11 @@ Route::middleware([sessionInactiva::class])->group(function () {
 
 // RUTAS PARA DEVOLVER VISTAS BLADE (LOGIN, REGISTER):
 // LOGIN
-Route::get('/iniciar', function () {
+Route::get('/iniciar/{verifiedEmailSuccess?}', function ($verifiedEmailSuccess = null) {
     if (Auth::check()) {
         return redirect()->route('home');
     }
-    return view('auth.login');
+    return view('auth.login', compact('verifiedEmailSuccess'));
 })->name('login');
 // REGISTER
 Route::get('/registrar', function () {
@@ -58,6 +57,8 @@ Route::get('/newpassword/{id_user}', function ($id_user) {
 
 // RUTAS DE AUTENTICACION, REGISTRO, RECUPERACION DE CONTRASEÑA DE USUARIOS
 Route::post('/autenticar', [AutenticationController::class, 'autenticar'])->name('autenticar.index');
+Route::post('/registrar', [RegisterController::class, 'registrar'])->name('registrar.index');
+Route::get('/verificar/{token}', [RegisterController::class, 'verificar'])->name('register.verifified');
 Route::post('/recuperar', [RecuperarContrasena::class, 'store'])->name('recuperar.store');
 Route::get('/recuperar/confirm/{id_user}', [RecuperarContrasena::class, 'recoverIndex'])->name('recuperar.index');
 Route::post('/contrasena/nueva/{id_user}', [RecuperarContrasena::class, 'newPassword'])->name('contraseña.nueva');

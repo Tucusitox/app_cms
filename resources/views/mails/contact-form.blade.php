@@ -20,8 +20,16 @@
     @endif
 
     @if ($token)
-        <p><strong>{{ $mensaje }}</strong></p><br>
-        <a>{{ $token }}</a>
+        <div style="width: 100%; height: 200px; text-align: center;">
+            <h1>MegaSoft Computación</h1>
+            <h2><b>{{ $mensaje }}</b></h2>
+            <a href="http://localhost:8000/verificar/{{$token}}"
+                type="submit" style="background-color: green; 
+                color: white; border: none; padding: 10px 20px; 
+                cursor: pointer; border-radius: 10px;">
+                Verificar correo
+            </a>
+        </div> 
     @endif
 
     @if ($correoContact)

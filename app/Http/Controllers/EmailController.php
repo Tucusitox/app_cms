@@ -10,16 +10,14 @@ use Illuminate\Support\Str;
 class EmailController
 {   
     // ENIVAR CORREO DE CONFIRMACION AL USUARIO CON UN TOKEN
-    public function emailConfirm($id_user, $destinatario)
+    public function emailConfirm($token, $destinatario)
     {
-        $token = Str::random(50);
-        $mensaje = "Estimado usuario confirme su correo con un clik en el botón:";
-
-        User::where('user_id', $id_user)
-        ->update(['user_token' => $token]);
+        $asunto = "Verficación de correo";
+        $mensaje = "Estimado usuario confirme su correo con un clik en el botón";
 
         // LAMAMOS A LA CLASE CONSTRUCTORA PARA ENVIAR EL CORREO
         dispatch(new SendEmailJob([
+            'asunto' => $asunto,
             'token' => $token,
             'mensaje' => $mensaje,
             'destinatario' => $destinatario,
@@ -41,7 +39,7 @@ class EmailController
 
         // ENVIAR CORREO AL USUARIO MEDIANTE UN JOB EN SEGUNDO PLANO
         $asunto = "Codigo de recuperación";
-        $mensaje = "Estimado usuario recupere su contraseña con el siguiente código:";
+        $mensaje = "Estimado usuario recupere su contraseña con el siguiente código";
 
         // LAMAMOS A LA CLASE CONSTRUCTORA PARA ENVIAR EL CORREO
         dispatch(new SendEmailJob([
