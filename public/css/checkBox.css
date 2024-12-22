@@ -1,0 +1,75 @@
+/* --------------------------------------- */
+/* ----- Radio Button */
+/* --------------------------------------- */
+/* --------------------------------------- */
+/* ----- Checkbox */
+/* --------------------------------------- */
+.checkBox h2 {
+    font-size: 16px;
+    color: #28a745;
+}
+
+.checkBox .radio label,
+.checkBox .checkbox label {
+    display: inline-block;
+    cursor: pointer;
+    color: #28a745;
+    position: relative;
+    padding: 5px 15px 5px 51px;
+    font-size: 1em;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.checkBox .radio label:hover,
+.checkBox .checkbox label:hover {
+    background: #0f411b;
+}
+
+.checkBox .radio label:before,
+.checkBox .checkbox label:before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    left: 15px;
+    border-radius: 50%;
+    background: none;
+    border: 3px solid #28a745;
+}
+
+.checkBox input[type="radio"] {
+    display: none;
+}
+
+.checkBox input[type="radio"]:checked + label:before {
+    display: none;
+}
+
+.checkBox input[type="radio"]:checked + label {
+    padding: 5px 15px;
+    background: #28a745;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.checkBox .checkbox label:before {
+    border-radius: 3px;
+}
+
+.checkBox .checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkBox .checkbox input[type="checkbox"]:checked + label:before {
+    display: none;
+}
+
+.checkBox .checkbox input[type="checkbox"]:checked + label {
+    background: #28a745;
+    color: #fff;
+    padding: 5px 15px;
+}

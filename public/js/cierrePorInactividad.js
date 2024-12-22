@@ -7,7 +7,7 @@ function timerIncrement() {
     inactivityTime += 1;
 
     // SI EL TIEMPO DE INACTIVIDAD ES MAYOR A N CANTIDAD DE TIEMPO
-    if (inactivityTime > 900) { //-> 15 MINUTOS
+    if (inactivityTime > 1200) { //-> 20 MINUTOS
         const modal = document.getElementById('modalPorInactividad');
         modal.classList.remove("d-none");
         bolean = true;
@@ -39,7 +39,7 @@ function invocandcion() {
 }
 
 // ESCUCHAR EVENTOS DE INTERACCION CON EL USUARIO
-document.onkeydown = invocandcion; // Al presionar una tecla
+//document.onkeydown = invocandcion; // Al presionar una tecla
 document.onclick = invocandcion; // Al hacer clik en la pantalla
-// document.onscroll = invocandcion; // Al hacer scroll en la pantalla
+//document.onscroll = invocandcion; // Al hacer scroll en la pantalla
 

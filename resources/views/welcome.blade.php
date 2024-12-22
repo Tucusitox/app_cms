@@ -5,7 +5,7 @@
 
         <div class="row py-lg-5 w-100">
 
-            <div class="col-lg-4 container mx-5">
+            <div class="col-lg-4 container mx-5 img-home">
                 <img src="{{ asset('img/imagenFondoHome.jpg') }}"
                     class="img-fluid border border-2 border-success rounded">
             </div>
@@ -28,7 +28,7 @@
 
     <style>
         @media (max-width: 768px) {
-            .mx-5 {
+            .img-home {
                 margin-left: 10px !important;
                 margin-right: 0 !important;
             }

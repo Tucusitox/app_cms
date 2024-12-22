@@ -1,6 +1,6 @@
 <div>
     {{-- FORMULARIO PARA SUBIR NUEVA PUBLICACION --}}
-    <section class="container-fluid p-5">
+    <section class="container-fluid p-4">
         <div class="card border border-2 border-success rounded p-4">
             {{-- ALERTAS PARA INDICAR REGISTRO EXITOSO --}}
             @if (session('success'))
@@ -9,21 +9,23 @@
             {{-- FORMUALRIO DE CREACION DE PUBLICACION --}}
             <form action="{{ route('newpost.index') }}" method="POST" enctype="multipart/form-data" id="formPost">
                 @csrf
-                <div class="row align-items-center mb-3">
+                <div class="row align-items-center mb-3 formCreateAndEditPost">
                 {{-- INPUT IMAGEN --}}
                     <div class="col-lg-4 d-flex justify-content-center contenedor-btn-file mt-2">
                         <label class="form-label text-center" for="foto">
                             <h4 class="text-success text-center mb-3"><b>Agregue una imagen:</b></h4>
                             <img src="{{ asset('img/add-img.png') }}" class="img-fluid rounded" id="img"
-                                style="width: 500px; max-height: 500px;">
-                            <input type="file" id="foto" name="PostImg">
+                                style="width: 300px; max-height: 300px;">
+                            <input type="file" id="foto" name="PostImg" style="width: 30px; height: 30px;">
                         </label>
                     </div>
 
                     {{-- INPUT DESCRIPCION DEL POST --}}
                     <div class="col-lg-8 text-success text-center p-3">
                         <h4 class="mb-3"><b>Contenido de la publicación:</b></h4>
-                        <textarea id="editor" name="PostBody"></textarea>
+                        <div class="border border-2 border-success rounded">
+                            <textarea id="editor" name="PostBody"></textarea>
+                        </div>
                     </div>
 
                 </div>
@@ -39,23 +41,5 @@
             </form>
         </div>
     </section>
-
-    {{-- ESTILOS DEL INPUT FILE --}}
-    <style>
-        #foto {
-            display: inline-block;
-            position: absolute;
-            z-index: 1;
-            width: 100%;
-            height: 50px;
-            top: 0;
-            left: 0;
-            opacity: 0;
-        }
-
-        img {
-            cursor: pointer;
-        }
-    </style>
 
 </div>

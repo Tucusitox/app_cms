@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <x-BotonCambioTemas />
+    <x-BotonCambioTemas/>
     <x-AlertaPorInactividad />
 
     @livewire('nadbar')

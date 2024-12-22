@@ -45,7 +45,7 @@ class RecuperarContrasena
             return redirect()->back()->with('danger','Las contraseñas no coinciden');
         }
         // CAPTURAMOS EL LA INFORMACION DEL USUARIO
-        $user = User::where('user_id',$id_user)->first();
+        $user = User::find($id_user);
         // GENERAMOS EL UPDATE DE LA CONTRASEÑA
         if (Hash::check($request->post('codeConfirm'), $user->password)) {
             $user->password = Hash::make($request->post('newPassword'));

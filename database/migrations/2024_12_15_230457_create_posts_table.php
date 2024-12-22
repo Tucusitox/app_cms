@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->integer('id_post', true);
             $table->integer('fk_user')->index('fk_posts_users1_idx');
+            $table->string('post_code')->unique('post_unique');;
             $table->string('post_img', 200);
             $table->string('post_tittle', 100);
             $table->string('post_body', 10000);
             $table->date('post_date');
+            $table->softDeletes();
         });
     }
 

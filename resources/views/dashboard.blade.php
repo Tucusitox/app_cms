@@ -1,29 +1,36 @@
 <x-LayoutDashboard tittle="Dashboard">
-
+    
+    {{-- PERFIL DEL USUARIO --}}
     @if ($vista === 'profile')
         @livewire('profile-component')
     @endif
-
+    {{-- TODAS LAS PUBLICACIONES (SOLO ADMIN) --}}
+    @if ($vista === 'allPosts')
+        @livewire('Administrador.all-posts')
+    @endif
+    {{-- PUBLICACIONES DEL USUARIO AUTENTICADO --}}
     @if ($vista === 'mePosts')
         @livewire('Publicador.posts-user')
     @endif
-
+    {{-- CREAR NUEVAS PUBLICACIONES --}}
     @if ($vista === 'newPost')
         @livewire('Publicador.new-post')
     @endif
-
-    @if ($vista === 'admin')
-        <section class="container-fluid py-5 mt-5">
-            <div class="card mt-5" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </section>
+    {{-- EDITAR PUBLICACIONES --}}
+    @if ($vista === 'editPost')
+        @livewire('Publicador.post-edit', ['id_post' => $id_post, 'UserAdmin' => $admin] )
+    @endif
+    {{-- CREAR NUEVO USUARIO (SOLO ADMIN) --}}
+    @if ($vista === 'newUser')
+        @livewire('Administrador.create-user')
+    @endif
+    {{-- BLOQUEAR O ELIMINAR USUARIOS (SOLO ADMIN) --}}
+    @if ($vista === 'blockAndDeleteUser')
+        @livewire('Administrador.block-and-delete-users')
+    @endif
+    {{-- HISTORIAL DE SESIONES DE TODOS LOS USURIOS (SOLO ADMIN) --}}
+    @if ($vista === "sessionsUsers")
+        @livewire('Administrador.sessions-user')
     @endif
 
 </x-LayoutDashboard>

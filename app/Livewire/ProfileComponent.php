@@ -6,7 +6,6 @@ use App\Models\Rol;
 use App\Models\SessionsUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -29,7 +28,7 @@ class ProfileComponent extends Component
         ->join('rols_x_permissions', 'rols.id_rol', '=', 'rols_x_permissions.fk_rol')
         ->join('permissions', 'permissions.id_permission', '=', 'rols_x_permissions.fk_permission')
         ->where('rols_x_permissions.fk_rol', $this->profileUser->id_rol)
-        ->groupBy('rols_x_permissions.fk_permission')
+        ->groupBy('rols_x_permissions.fk_permission','permission_name')
         ->get();
 
         $this->sessionsUser = SessionsUser::where('fk_user',Auth::id())
@@ -41,12 +40,10 @@ class ProfileComponent extends Component
     // METODO PARA ACTUALIZAR DATOS DEL USUARIO
     public function updateDataUser()
     {
-        $this->validate(
-            [
-                'newPassword' => 'required|string|min:8',
-                'confirmPassword' => 'required|string|min:8',
-            ]
-        );
+        $this->validate([
+            'newPassword' => 'required|string|min:8',
+            'confirmPassword' => 'required|string|min:8',
+        ]);
 
         $newName ='';
         if ($this->userName == null) {

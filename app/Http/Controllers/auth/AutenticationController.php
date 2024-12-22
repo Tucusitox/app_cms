@@ -21,24 +21,40 @@ class AutenticationController
         if (Auth::check()) {
             return redirect()->route('login')->with('danger', 'Ya existe una Sesión Activa en el Navegador');
         }
-        // CASO 1: SI LAS CREDENCIALES SON INCORRECTAS REDIRIGIR AL USUARIO AL LOGIN
+        // CASO 2: SI LAS CREDENCIALES SON INCORRECTAS REDIRIGIR AL USUARIO AL LOGIN
         if (!Auth::attempt($credentials)) {
             return redirect()->route('login')->with('danger', 'Correo o contraseña incorrectos');
         }
-        // CASO 2: VALIDAR SI EL CORREO ESTA VERIFICADO
+        // CASO 4: EL USUARIO ESTA BLOQUEADO
+        if (Auth::user()->user_status == 'bloqueado') {
+            $LogoutController = new LogoutController;
+            $LogoutController->logoutAndRedirect();
+            return redirect()->route('login')->with('danger', 'Este usuario se encuentra bloqueado del sistema');
+        }
+        // CASO 4: VALIDAR SI EL CORREO ESTA VERIFICADO
         if (Auth::user()->email_verified !== 'true') {
             $LogoutController = new LogoutController;
-            $LogoutController->logoutAndRedirect($request);
-            return redirect()->route('correo.confirm', ['id_user' => Auth::user()->user_id]);
+            $LogoutController->logoutAndRedirect();
+            return redirect()->route('login')->with('danger', 'Verifique su correo electrónico para iniciar sesión');
         }
-
-        // CASO 3: VALIDAR SI YA TIENE UNA SESION ACTIVA
-        if (SessionsUser::where('fk_user', Auth::id())->where('session_status', 'activo')->exists()) {
+        //CASO 5: EVALUAR SI EL USUARIO FUE CREADO POR UN ADMINISTRADOR
+        if (Auth::user()->user_status == null) {
+            $id_user = Auth::user()->user_id;
             $LogoutController = new LogoutController;
-            $LogoutController->logoutAndRedirect($request);
+            $LogoutController->logoutAndRedirect();
+            return redirect()->route('newpassword', ['id_user'=>$id_user]);
+        }
+        // CASO IDEAL: VALIDAR SI YA TIENE UNA SESION ACTIVA
+        $SessionExist = SessionsUser::where('fk_user', Auth::id())
+        ->where('session_status', 'activo')
+        ->exists();
+
+        if ($SessionExist) {
+            $LogoutController = new LogoutController;
+            $LogoutController->logoutAndRedirect();
             return redirect()->route('login')->with('danger', 'Este usuario tiene una sesión activa en el sistema');
         }
-
+        // CASO IDEAL: INICIAR LA SESION DEL USUARIO
         $this->crearSession();
         $request->session()->regenerate();
         return redirect()->route('home');

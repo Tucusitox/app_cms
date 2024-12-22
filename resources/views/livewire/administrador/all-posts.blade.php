@@ -10,7 +10,7 @@
                     <div class="row card-header d-flex justify-content-between py-4">
 
                         <div class="col-lg-8 text-success mb-2">
-                            <h3>Mis publicaciones</h3>
+                            <h3>Todas las publicaciones del sistema</h3>
                         </div>
                         <div class="card-tools col-lg-4">
                             {{-- INPUT BUSCAR POR CODIGO --}}
@@ -28,8 +28,9 @@
                     </div>
 
                     {{-- ALERTA CUANDO SE ACTULICE UNA PUBLICACION --}}
-                    @if(session('success'))
-                        <x-AlertaMensaje typeAlert="alert-success" styleText="text-start m-3" mensaje="{{ session('success') }}" />
+                    @if (session('success'))
+                        <x-AlertaMensaje typeAlert="alert-success" styleText="text-start m-3"
+                            mensaje="{{ session('success') }}" />
                     @endif
 
                     {{-- MENSAJE DE PROCESANDO --}}
@@ -42,7 +43,7 @@
 
                         <table class="table table-head-fixed text-nowrap">
 
-                            @if ($UserPosts->isEmpty())
+                            @if ($AllPosts->isEmpty())
                                 <tr class="text-danger text-center w-100">
                                     <td colspan="5"><b>No se encontraron publicaciones</b></td>
                                 </tr>
@@ -52,23 +53,35 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Fecha</th>
+                                    <th>Usuario</th>
                                     <th>Título</th>
+                                    <th>Eliminada lógicamente</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($UserPosts as $item)
+                                @foreach ($AllPosts as $item)
                                     <tr class="text-secondary-emphasis">
                                         <td>{{ $item->post_code }}</td>
                                         <td>{{ $item->post_date->format('d/m/Y') }}</td>
-                                        <td>{{ $item->post_tittle }}</td>
+                                        <td>{{ $item->user_name }}</td>
+                                        <td>{{ Str::limit($item->post_tittle, 30)  }}</td>
+                                        <td>{{ $item->deleted_at ? 'Si' : 'No' }}</td>
                                         <td>
-                                            <a href="{{ route('dashboard',['vista' => 'editPost','id_post' => $item->id_post]) }}"
-                                                class="btn btn-info me-2">
-                                                <i class='bx bxs-edit'></i>
-                                                Editar
-                                            </a>
-                                            <a class="btn btn-danger" wire:click='openAndCloseModal( {{ $item->id_post }} )'>
+                                            @if ($item->deleted_at == null)
+                                                <a href="{{ route('dashboard', [
+                                                    'vista' => 'editPost',
+                                                    'id_post' => $item->id_post,
+                                                    'admin' => 'true',
+                                                ]) }}"
+                                                    class="btn btn-info me-2">
+                                                    <i class='bx bxs-edit'></i>
+                                                    Editar
+                                                </a>
+                                            @endif
+
+                                            <a class="btn btn-danger"
+                                                wire:click='openAndCloseModal( {{ $item->id_post }} )'>
                                                 <i class='bx bxs-trash'></i>
                                                 Eliminar
                                             </a>
@@ -87,9 +100,9 @@
 
     {{-- MODAL PARA ELIMINAR PUBLICACION --}}
     @if ($Modal)
-        <x-ModalSoftDeletePost idPost="{{ $PostSoftDelete->id_post }}" postCode="{{ $PostSoftDelete->post_code }}"/>
+        <x-ModalDeletePost idPost="{{ $PostDelete->id_post }}" postCode="{{ $PostDelete->post_code }}" />
     @endif
-    
+
     {{-- PARA INDICAR COMO DEBE SER EL CODIGO EN EL CLIENTE --}}
     <script>
         const input = document.getElementById('SearchCode');
@@ -128,4 +141,5 @@
             border-radius: 5px;
         }
     </style>
+
 </div>

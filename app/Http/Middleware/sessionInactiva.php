@@ -24,8 +24,8 @@ class sessionInactiva
             // OBTENER EL TIEMPO DE INACTIVIDAD
             if (session()->has('ultimaActividad')) {
                 $lastActivity = session()->get('ultimaActividad');
-                if (time() - $lastActivity > 900) { // -> 15 MINUTOS
-                    return app(LogoutController::class)->logout($request);
+                if (time() - $lastActivity > 1200) { // -> 20 MINUTOS
+                    return app(LogoutController::class)->logout();
                 }
             }
             // ACTUALIZAR LA SESION CADA VEZ QUE SE EJECUTE UNA SOLICITUD HTTP

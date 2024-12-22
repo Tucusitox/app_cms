@@ -52,10 +52,10 @@ class AppSeeder extends Seeder
                 'fk_rol' => 1,
                 'user_name' => 'Tucusitox',
                 'email' => 'jdmorianperez@gmail.com',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('Morian.-12345'),
                 'email_verified' => 'true',
                 'user_token' => Str::random(50),
-                'user_status' => null,
+                'user_status' => 'activo',
             ],
             [
                 'fk_rol' => 1,
@@ -64,31 +64,32 @@ class AppSeeder extends Seeder
                 'password' => Hash::make('12345678'),
                 'email_verified' => 'true',
                 'user_token' => Str::random(50),
-                'user_status' => null,
+                'user_status' => 'activo',
             ],
             [
                 'fk_rol' => 2,
                 'user_name' => 'Apolo',
-                'email' => 'example2@gmail.com',
+                'email' => 'example@gmail.com',
                 'password' => Hash::make('12345678'),
                 'email_verified' => 'true',
                 'user_token' => Str::random(50),
-                'user_status' => null,
+                'user_status' => 'activo',
             ],
             [
                 'fk_rol' => 3,
                 'user_name' => 'Katherine',
-                'email' => 'example3@gmail.com',
+                'email' => 'example2@gmail.com',
                 'password' => Hash::make('12345678'),
                 'email_verified' => 'true',
                 'user_token' => Str::random(50),
-                'user_status' => null,
+                'user_status' => 'activo',
             ],
         ]);
         // INSERSION EN TABLA "posts"
         Post::insert([
             [
                 'fk_user' => 1,
+                'post_code' => strtoupper(Str::random(6)),
                 'post_img' => 'img/imgPosts/noticia.jpg',
                 'post_tittle' => 'Resumen de una Noticia Actual',
                 'post_body' => '<p><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">&nbsp; &nbsp; &nbsp; &nbsp; En el contexto de las &uacute;ltimas semanas, uno de los temas m&aacute;s relevantes ha sido el avance de las negociaciones sobre el cambio </span><strong><span data-testid="youchat-text">clim&aacute;tico</span></strong><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text"> en la conferencia COP29, que se est&aacute; llevando a cabo en<strong> Dub&aacute;i</strong>. Los l&iacute;deres mundiales se han reunido para discutir estrategias que permitan mitigar los efectos del calentamiento global y alcanzar los objetivos establecidos en el Acuerdo de Par&iacute;s. </span></p>
@@ -99,7 +100,8 @@ class AppSeeder extends Seeder
                 'post_date' => now(),
             ],
             [
-                'fk_user' => 2,
+                'fk_user' => 3,
+                'post_code' => strtoupper(Str::random(6)),
                 'post_img' => 'img/imgPosts/noticia.jpg',
                 'post_tittle' => 'Resumen de una Noticia Actual',
                 'post_body' => '<p><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">&nbsp; &nbsp; &nbsp; &nbsp; En el contexto de las &uacute;ltimas semanas, uno de los temas m&aacute;s relevantes ha sido el avance de las negociaciones sobre el cambio </span><strong><span data-testid="youchat-text">clim&aacute;tico</span></strong><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text"> en la conferencia COP29, que se est&aacute; llevando a cabo en<strong> Dub&aacute;i</strong>. Los l&iacute;deres mundiales se han reunido para discutir estrategias que permitan mitigar los efectos del calentamiento global y alcanzar los objetivos establecidos en el Acuerdo de Par&iacute;s. </span></p>
@@ -107,10 +109,11 @@ class AppSeeder extends Seeder
                             <ol style="list-style-type: lower-alpha;">
                             <li><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">A medida que avanza la conferencia, la comunidad internacional espera que se logren acuerdos concretos que no solo aborden las causas del cambio clim&aacute;tico, sino que tambi&eacute;n promuevan un desarrollo sostenible que beneficie a todas las naciones.</span></li>
                             </ol>',
-                'post_date' => now(),
+                'post_date' => '2024-08-01',
             ],
             [
-                'fk_user' => 2,
+                'fk_user' => 3,
+                'post_code' => strtoupper(Str::random(6)),
                 'post_img' => 'img/imgPosts/noticia.jpg',
                 'post_tittle' => 'Resumen de una Noticia Actual',
                 'post_body' => '<p><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">&nbsp; &nbsp; &nbsp; &nbsp; En el contexto de las &uacute;ltimas semanas, uno de los temas m&aacute;s relevantes ha sido el avance de las negociaciones sobre el cambio </span><strong><span data-testid="youchat-text">clim&aacute;tico</span></strong><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text"> en la conferencia COP29, que se est&aacute; llevando a cabo en<strong> Dub&aacute;i</strong>. Los l&iacute;deres mundiales se han reunido para discutir estrategias que permitan mitigar los efectos del calentamiento global y alcanzar los objetivos establecidos en el Acuerdo de Par&iacute;s. </span></p>
@@ -118,10 +121,11 @@ class AppSeeder extends Seeder
                             <ol style="list-style-type: lower-alpha;">
                             <li><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">A medida que avanza la conferencia, la comunidad internacional espera que se logren acuerdos concretos que no solo aborden las causas del cambio clim&aacute;tico, sino que tambi&eacute;n promuevan un desarrollo sostenible que beneficie a todas las naciones.</span></li>
                             </ol>',
-                'post_date' => now(),
+                'post_date' => '2024-11-21',
             ],
             [
-                'fk_user' => 2,
+                'fk_user' => 3,
+                'post_code' => strtoupper(Str::random(6)),
                 'post_img' => 'img/imgPosts/noticia.jpg',
                 'post_tittle' => 'Resumen de una Noticia Actual',
                 'post_body' => '<p><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">&nbsp; &nbsp; &nbsp; &nbsp; En el contexto de las &uacute;ltimas semanas, uno de los temas m&aacute;s relevantes ha sido el avance de las negociaciones sobre el cambio </span><strong><span data-testid="youchat-text">clim&aacute;tico</span></strong><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text"> en la conferencia COP29, que se est&aacute; llevando a cabo en<strong> Dub&aacute;i</strong>. Los l&iacute;deres mundiales se han reunido para discutir estrategias que permitan mitigar los efectos del calentamiento global y alcanzar los objetivos establecidos en el Acuerdo de Par&iacute;s. </span></p>
@@ -129,7 +133,7 @@ class AppSeeder extends Seeder
                             <ol style="list-style-type: lower-alpha;">
                             <li><span class="AnswerParser_TextContainer__z_Iiv" data-testid="youchat-text">A medida que avanza la conferencia, la comunidad internacional espera que se logren acuerdos concretos que no solo aborden las causas del cambio clim&aacute;tico, sino que tambi&eacute;n promuevan un desarrollo sostenible que beneficie a todas las naciones.</span></li>
                             </ol>',
-                'post_date' => now(),
+                'post_date' => '2024-10-11',
             ],
         ]);
     }

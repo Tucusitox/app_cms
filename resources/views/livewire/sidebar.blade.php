@@ -10,16 +10,16 @@
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="offcanvas-body scrollSidebar">
             <div class="cont-menu sidebar">
-
+                {{-- VISITANTE --}}
                 <div class="sidebarHeader w-100 text-success mb-2 p-2">
                     <a href="{{route('dashboard',['vista'=>'profile'])}}" class="nav-link d-flex align-items-center">
                         <i class='bx bxs-user me-2'></i>
                         <h5 class="mt-2">Mi Perfil</h5>
                     </a>
                 </div>
-
+                {{-- PUBLICADOR --}}
                 @if ($userRol->rol_name === 'Administrador' || $userRol->rol_name === 'Publicador')
                     <div class="cajaPadre w-100 mb-2">
                         <div class="sidebarHeader d-flex justify-content-between align-items-center text-success p-2">
@@ -32,13 +32,16 @@
                         </div>
 
                         <nav class="nav-links d-none opciones">
+                            @if ($userRol->rol_name === 'Administrador')
+                                <a href="{{route('dashboard',['vista'=>'allPosts'])}}"><b>Todas las publicaciones</b></a>
+                            @endif
                             <a href="{{route('dashboard',['vista'=>'mePosts'])}}"><b>Mis publicaciones</b></a>
                             <a href="{{route('dashboard',['vista'=>'newPost'])}}"><b>Crear nueva publicación</b></a>
                         </nav>
 
                     </div>
                 @endif
-
+                {{-- ADMINISTRADOR --}}
                 @if ($userRol->rol_name === 'Administrador')
                     <div class="cajaPadre w-100">
                         <div class="sidebarHeader d-flex justify-content-between align-items-center text-success p-2">
@@ -51,10 +54,9 @@
                         </div>
 
                         <nav class="nav-links d-none opciones">
-                            <a href="{{route('dashboard',['vista'=>'admin'])}}"><b>Admin</b></a>
-                            <a href="#"><b>Resumen de Empleados</b></a>
-                            <a href="#"><b>Resumen de Empleados</b></a>
-                            <a href="#"><b>Resumen de Empleados</b></a>
+                            <a href="{{route('dashboard',['vista'=>'blockAndDeleteUser'])}}"><b>Gestión de usuarios</b></a>
+                            <a href="{{route('dashboard',['vista'=>'newUser'])}}"><b>Crear un nuevo usuario</b></a>
+                            <a href="{{route('dashboard',['vista'=>'sessionsUsers'])}}"><b>Historial de sesiones</b></a>
                         </nav>
 
                     </div>

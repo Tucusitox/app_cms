@@ -8,12 +8,14 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Post
  * 
  * @property int $id_post
  * @property int $fk_user
+ * @property string $post_code
  * @property string $post_img
  * @property string $post_tittle
  * @property string $post_body
@@ -25,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+	use SoftDeletes;
+	
 	protected $table = 'posts';
 	protected $primaryKey = 'id_post';
 	public $timestamps = false;
@@ -36,6 +40,7 @@ class Post extends Model
 
 	protected $fillable = [
 		'fk_user',
+		'post_code',
 		'post_img',
 		'post_tittle',
 		'post_body',

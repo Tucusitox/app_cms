@@ -37,27 +37,6 @@
         </form>
     </div>
 
-    {{-- ALERTAS PARA ERRORES DE VALIDACION --}}
-    @if ($errors->any())
-        <script>
-            Swal.fire({
-                icon: "error",
-                html: "@foreach ($errors->all() as $error) <h5>{{ $error }}</h5> @endforeach",
-                confirmButtonText: "¡Entendido!",
-            });
-        </script>
-    @endif
-
-    @if (session('danger'))
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "<h4>¡{{ session('danger') }}!</h4>",
-                confirmButtonText: "¡Entendido!",
-            });
-        </script>
-    @endif
-
     {{-- PARA INDICAR COMO DEBE SER EL CODIGO EN EL CLIENTE --}}
     <script>
         const input = document.getElementById('inputCodigo');

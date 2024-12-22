@@ -1,6 +1,7 @@
 tinymce.init({
     selector: '#editor',
     menubar: false,
+    border:true,
     plugins: [
         'advlist', 'autolink', 'lists', 'link', 'charmap',
         'searchreplace', 'visualblocks', 'code', 'fullscreen',

@@ -17,7 +17,7 @@
 .sidebarHeader:hover {
     color: #28a745;
     border-left: 13px solid #28a745;
-    background: rgb(161, 153, 153);
+    background: rgb(163, 159, 159);
     border-radius: 10px;
 }
 
@@ -27,5 +27,14 @@
 }
 
 .opciones a:hover {
-    color: #bdcee7;
+    color: rgb(231, 222, 222);
+}
+
+.scrollSidebar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.scrollSidebar::-webkit-scrollbar-thumb {
+    background: #28a745;
+    border-radius: 10px;
 }

@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Email SetyGet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MegaSoft Computación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
+
     @if ($codigo)
-        <p><strong>{{ $mensaje }}</strong></p><br>
-        <p><strong>{{ $codigo }}</strong></p><br>
+        <div style="text-align: center;">
+            <h1>MegaSoft Computación</h1>
+            <h2>{{ $mensaje }}</h2>
+            <h2 style="color: green;"><b>{{ $codigo }}</b></h2>
+        </div>
     @endif
 
     @if ($token)
         <p><strong>{{ $mensaje }}</strong></p><br>
-        <button>{{ $token }}</button>
+        <a>{{ $token }}</a>
     @endif
 
     @if ($correoContact)
-        <p><strong>{{ $nombre }}</strong></p><br>
-        <p><strong>{{ $correoContact }}</strong></p><br>
-        <p><strong>{{ $mensaje }}</strong></p><br>
+        <h3>Mensaje desde la página de contacto</h3>
+        <p>Nombre del cliente: <b>{{ $nombre }}</b></p>
+        <p>Correo del cliente: <b>{{ $correoContact }}</b></p>
+        <div>
+            <p>{{ $mensaje }}</p>
+        </div>
     @endif
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

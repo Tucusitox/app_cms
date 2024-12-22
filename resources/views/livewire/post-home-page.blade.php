@@ -11,14 +11,14 @@
                             preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#55595c" />
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em" class="cardTtitle">
                             <h5 class="text-success text-center mt-2">{{ $item->post_tittle }}</h5>
                         </text>
                         </img>
                     </div>
-                    <div class="card-body cardPost">
+                    <div class="card-body  cardPost">
                         <div class="card-text d-flex flex-column align-items-center">
-                            {!! Str::limit(str_replace(['{', '}', '<em>', '</em>'], '', $item->post_body), 500) !!}
+                            {!! Str::limit($item->post_body, 500) !!}
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
@@ -35,10 +35,10 @@
 
     {{-- PARA VER MAS INFORMACION SOBRE UNA PUBLICACION --}}
     @if ($Modal == true)
-        <div class="modal fade show" style="display: block; padding-right: 15px; backdrop-filter: blur(0.4rem);"aria-modal="true" role="dialog">
+        <div class="modal fade show d-block" style="backdrop-filter: blur(0.4rem);"aria-modal="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content bg-body border border-2 border-success text-center p-5">
-                    <div class="modal-body mb-3" style="max-height: 400px; overflow-y: auto;">
+                    <div class="modal-body mb-3 modalPostBody">
                         <h4 class="text-success">{{ $FindPost->post_tittle }}</h4>
                         {!! $FindPost->post_body !!}
                     </div>
@@ -49,9 +49,18 @@
             </div>
         </div>
     @endif
-    
+
     {{-- ESTILO PARA AJUSTAR EL TAMAÑO DEL CONTENIDO --}}
     <style>
+        /* CARD */
+        .cardTtitle{
+            height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;            
+        }
         .cardPost {
             height: 150px;
             overflow: hidden;
@@ -59,6 +68,19 @@
             display: -webkit-box;
             -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
+        }
+        /* MODAL */
+        .modalPostBody{
+            max-height: 350px; 
+            overflow-y: auto;
+        }
+        .modalPostBody::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .modalPostBody::-webkit-scrollbar-thumb {
+            background: #28a745;
+            border-radius: 10px;
         }
     </style>
 

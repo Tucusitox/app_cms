@@ -32,7 +32,7 @@
                 <div class="card border border-2 border-success rounded p-4">
                     <form wire:submit='updateDataUser'>
                         <h3 class="text-success text-center mb-3">Actualice su información</h3>
-
+                        {{-- MENSAJE DE CARGA --}}
                         <div class="alert alert-success my-2 p-2 w-100" wire:loading>
                             <h5><i class="spinner-border" role="status"></i> ¡Actualizando datos!</h5>
                         </div>
@@ -77,71 +77,59 @@
             </div>
 
             {{-- TABLA CON INFORMACION DE LAS SESIONES --}}
-            <div class="container border border-2 border-success rounded text-success p-4 mt-3">
-                <h5>Historial de sesiones:</h5>
-                <hr class="text-success">
-                <div class="table-responsive table-container">
-                    <table class="table text-success">
-                        <thead class="bg-dark border-bottom border-success">
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Estatus</th>
-                                <th>Inicio</th>
-                                <th>Cierre</th>
-                                <th>Duración</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($sessionsUser as $item)
-                                <tr class="border-bottom border-success">
-                                    <td>{{ $item->session_date->format('d/m/Y') }}</td>
-                                    <td>{{ $item->session_status }}</td>
-                                    <td>{{ $item->session_time_start->format('h:i A') }}</td>
-                                    <td>
-                                        @if (!$item->session_time_closing)
-                                            Por definir
-                                        @else
-                                            {{ $item->session_time_closing->format('h:i A') }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if (!$item->session_duration)
-                                            Por definir
-                                        @else
-                                            {{ $item->session_duration->format('H:m:s') }}
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-body table-responsive table-container border border-2 border-success rounded mt-3 mx-2 p-0" style="max-height: 500px;">
+                <h5 class="text-success m-3"><b>Historial de sesiones:</b></h5>
+                <table class="table table-head-fixed text-nowrap ">
+
+                    <thead class="bg-body text-success border-bottom border-success">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estatus</th>
+                            <th>Inicio</th>
+                            <th>Cierre</th>
+                            <th>Duración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($sessionsUser as $item)
+                        <tr class="border-bottom border-success">
+                            <td>{{ $item->session_date->format('d/m/Y') }}</td>
+                            <td>{{ $item->session_status }}</td>
+                            <td>{{ $item->session_time_start->format('h:i A') }}</td>
+                            <td>
+                                @if (!$item->session_time_closing)
+                                    Por definir
+                                @else
+                                    {{ $item->session_time_closing->format('h:i A') }}
+                                @endif
+                            </td>
+                            <td>
+                                @if (!$item->session_duration)
+                                    Por definir
+                                @else
+                                    {{ $item->session_duration->format('H:m:s') }}
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </section>
 
     {{-- ESTILOS DE LA TABLA --}}
     <style>
-        .table-container {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-
-        }
-        th,td {
-            padding: 8px;
-            text-align: left;
-        }
         thead {
             position: sticky;
             top: 0;
             z-index: 1;
         }
+
         .table-container::-webkit-scrollbar {
             width: 5px;
+            height: 5px;
         }
 
         .table-container::-webkit-scrollbar-thumb {

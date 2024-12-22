@@ -9,7 +9,8 @@ iconAbrir.forEach((icon, index) => {
         lista[index].classList.remove("d-none");
         icon.classList.add("d-none");
         iconCerrar[index].classList.remove("d-none");
-        cajaPadre[index].style.background = "rgb(196, 189, 189)";
+        cajaPadre[index].style.border = "2px solid green";
+        cajaPadre[index].style.borderRadius = "10px";
     });
 });
 
@@ -18,6 +19,7 @@ iconCerrar.forEach((icon, index) => {
         lista[index].classList.add("d-none");
         iconAbrir[index].classList.remove("d-none");
         icon.classList.add("d-none");
-        cajaPadre[index].style.background = "transparent";
+        cajaPadre[index].style.border = "none";
+        cajaPadre[index].style.borderRadius = "0";
     });
 });
