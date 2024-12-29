@@ -12,13 +12,22 @@ En el archivo .env el SESSION_DRIVER debe estar en "database", así: "SESSION_DR
 
 PASO N2 ---------------------------------------------------------
 
+Configure la variable de entorno DB_MYSQLDUMP_PATH con la direccion de sus archivos bin de mysql
+
+Ejemplo:
+DB_MYSQLDUMP_PATH='C:\Program Files\MySQL\MySQL Server 8.3\bin'
+
+Esto es necesario para poder realizar el respaldo de la base de datos
+
+PASO N3 ---------------------------------------------------------
+
 Entra a phpMyAdmin y crea una nueva base de datos con el nombre "app_cms".
 
-PASO N3 ----------------------------------------------------------
+PASO N4 ----------------------------------------------------------
 
 Con el proyecto ya en vscode desde la terminal aplica el comando "php artisan migrate". Depúes de aplicarlo revisa el phpMyAdmin para ver si se crearon las tablas correctamente.
 
-PASO N4 -----------------------------------------------------------
+PASO N5 -----------------------------------------------------------
 
 En la terminal aplica el comando "php artisan db:seed --class=AppSeeder" para insertar datos de prueba y así poder visualizar el funcionamiento del sistema.
 

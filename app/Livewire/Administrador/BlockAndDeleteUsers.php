@@ -35,8 +35,8 @@ class BlockAndDeleteUsers extends Component
     public function allUsers()
     {
         $this->AllUsers = User::join('rols', 'rols.id_rol', '=', 'users.fk_rol')
-            ->orderBy('user_name', 'asc')
-            ->get();
+        ->orderBy('user_name', 'asc')
+        ->get();
     }
 
     // METODO PARA BUSCAR UN USUARIO POR ID

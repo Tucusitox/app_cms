@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 {{-- PUBLICADOR --}}
-                @if ($userRol->rol_name === 'Administrador' || $userRol->rol_name === 'Publicador')
+                @if ($userRol->rol_name === 'Publicador' || $userRol->rol_name === 'Administrador')
                     <div class="cajaPadre w-100 mb-2">
                         <div class="sidebarHeader d-flex justify-content-between align-items-center text-success p-2">
                             <a href="#" class="nav-link d-flex align-items-center">
@@ -32,6 +32,7 @@
                         </div>
 
                         <nav class="nav-links d-none opciones">
+                            {{-- ADMINISTRADOR --}}
                             @if ($userRol->rol_name === 'Administrador')
                                 <a href="{{route('dashboard',['vista'=>'allPosts'])}}"><b>Todas las publicaciones</b></a>
                             @endif
@@ -41,7 +42,7 @@
 
                     </div>
                 @endif
-                {{-- ADMINISTRADOR --}}
+                {{-- ADMINISTRADOR--}}
                 @if ($userRol->rol_name === 'Administrador')
                     <div class="cajaPadre w-100">
                         <div class="sidebarHeader d-flex justify-content-between align-items-center text-success p-2">
@@ -55,8 +56,9 @@
 
                         <nav class="nav-links d-none opciones">
                             <a href="{{route('dashboard',['vista'=>'blockAndDeleteUser'])}}"><b>Gestión de usuarios</b></a>
-                            <a href="{{route('dashboard',['vista'=>'newUser'])}}"><b>Crear un nuevo usuario</b></a>
-                            <a href="{{route('dashboard',['vista'=>'sessionsUsers'])}}"><b>Historial de sesiones</b></a>
+                            <a href="{{route('dashboard',['vista'=>'newUser'])}}"><b>Crear nuevo usuario</b></a>
+                            <a href="{{route('dashboard',['vista'=>'sessionsUsers'])}}"><b>Gestión de sesiones</b></a>
+                            <a href="{{route('dashboard',['vista'=>'backupDB'])}}"><b>Copia de seguridad</b></a>
                         </nav>
 
                     </div>

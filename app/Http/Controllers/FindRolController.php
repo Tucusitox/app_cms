@@ -31,7 +31,7 @@ class FindRolController
         $this->RolUser = User::join('rols', 'users.fk_rol', '=', 'rols.id_rol')
         ->where('user_id', Auth::id())
         ->first();
-
+    
         if ($this->RolUser->rol_name !== "Administrador") {
             return redirect()->route('dashboard', ['vista' => 'profile']);
         }

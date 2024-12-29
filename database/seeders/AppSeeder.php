@@ -25,6 +25,7 @@ class AppSeeder extends Seeder
             ['permission_name' => 'Escritura'],
             ['permission_name' => 'Borrado lógico'],
             ['permission_name' => 'Borrado físico'],
+            ['permission_name' => 'Copia de seguridad'],
         ]);
         // INSERSION EN TABLA "rols"
         Rol::insert([
@@ -39,6 +40,7 @@ class AppSeeder extends Seeder
             ['fk_rol' => 1, 'fk_permission' => 2,],
             ['fk_rol' => 1, 'fk_permission' => 3,],
             ['fk_rol' => 1, 'fk_permission' => 4,],
+            ['fk_rol' => 1, 'fk_permission' => 5,],
             // PUBLICADOR
             ['fk_rol' => 2, 'fk_permission' => 1,],
             ['fk_rol' => 2, 'fk_permission' => 2,],

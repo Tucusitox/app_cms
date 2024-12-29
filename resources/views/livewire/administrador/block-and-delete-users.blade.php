@@ -27,7 +27,7 @@
 
                     </div>
 
-                    {{-- ALERTA CUANDO SE ACTUALICE UNA PUBLICACION --}}
+                    {{-- ALERTA DE MENSAJES DE EXITO --}}
                     @if (session('success'))
                         <x-AlertaMensaje typeAlert="alert-success" styleText="text-start m-3"
                             mensaje="{{ session('success') }}" />
@@ -48,7 +48,7 @@
                         <h5><i class="spinner-border me-2" role="status"></i>Espere un momento</h5>
                     </div>
 
-                    {{-- MOSTRAR LAS PUBLICACIONES --}}
+                    {{-- MOSTRAR LOS USUARIOS DEL SISTEMA --}}
                     <div class="card-body table-responsive table-container p-0" style="max-height: 500px;">
 
                         <table class="table table-head-fixed text-nowrap">
@@ -139,9 +139,9 @@
                     <form wire:submit='changeRol( {{ $UserRolId->user_id }} )'>
                         {{-- INPUTS CHECKBOK --}}
                         <div class="checkBox mb-2 py-2">
-                            <div class="row d-flex justify-content-start radio">
+                            <div class="row d-flex justify-content-center radio">
                                 @foreach ($AllRols as $item)
-                                    <div class="col-lg-4 text-center">
+                                    <div class="col-lg-4 text-center mb-2">
                                         <input type="radio" id="{{ $item->rol_name }}" name="rol"
                                             value="{{ $item->id_rol }}" wire:model="RolChange">
                                         <label for="{{ $item->rol_name }}"><b>{{ $item->rol_name }}</b></label>

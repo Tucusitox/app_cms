@@ -1,5 +1,5 @@
 <x-LayoutDashboard tittle="Dashboard">
-    
+
     {{-- PERFIL DEL USUARIO --}}
     @if ($vista === 'profile')
         @livewire('profile-component')
@@ -18,7 +18,7 @@
     @endif
     {{-- EDITAR PUBLICACIONES --}}
     @if ($vista === 'editPost')
-        @livewire('Publicador.post-edit', ['id_post' => $id_post, 'UserAdmin' => $admin] )
+        @livewire('Publicador.post-edit', ['id_post' => $id_post, 'UserAdmin' => $admin])
     @endif
     {{-- CREAR NUEVO USUARIO (SOLO ADMIN) --}}
     @if ($vista === 'newUser')
@@ -29,8 +29,12 @@
         @livewire('Administrador.block-and-delete-users')
     @endif
     {{-- HISTORIAL DE SESIONES DE TODOS LOS USURIOS (SOLO ADMIN) --}}
-    @if ($vista === "sessionsUsers")
+    @if ($vista === 'sessionsUsers')
         @livewire('Administrador.sessions-user')
+    @endif
+    {{-- REALIZAR RESPALDO DE LA BASE DE DATOS (SOLO ADMIN) --}}
+    @if ($vista === 'backupDB')
+        @livewire('Administrador.backup-data-base')
     @endif
 
 </x-LayoutDashboard>
