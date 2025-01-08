@@ -42,6 +42,12 @@ class CreateUser extends Component
             'user_token' => Str::random(50),
             'user_status' => null,
         ]);
+
+        // LIMPIAMOS LOS CAMPOS
+        $this->UserName = "";
+        $this->UserEmail = "";
+        $this->UserRol = "";
+
         session()->flash('success', 'Usuario creado con éxito');
     }
     // METODO PARA CARGAR TODOS LOS ROLES EXISTENTES

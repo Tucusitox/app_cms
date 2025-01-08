@@ -34,6 +34,8 @@ class EmailController
         for ($i = 0; $i < $longitud; $i++) {
             $codigo .= $caracteres[rand(0, strlen($caracteres) - 1)];
         }
+        
+        // ACTUALIZAMOS LA CONTRASEÑA DEL USUARIO
         User::where('user_id', $id_user)
         ->update(['password' => Hash::make($codigo)]);
 

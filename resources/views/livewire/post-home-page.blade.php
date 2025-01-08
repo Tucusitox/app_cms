@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body  cardPost">
                         <div class="card-text d-flex flex-column align-items-center">
-                            {!! Str::limit($item->post_body, 500) !!}
+                            {!! Str::limit(str_replace('<em>', '', str_replace('</em>', '', $item->post_body)), 500) !!}
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">

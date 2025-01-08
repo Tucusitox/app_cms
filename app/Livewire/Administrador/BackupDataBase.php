@@ -31,7 +31,7 @@ class BackupDataBase extends Component
     {
         $this->validate([
             'AdminPassword' => 'required|string|min:8',
-        ]);    
+        ]);
 
         $UserAuth = User::find(Auth::id());
 
@@ -39,11 +39,12 @@ class BackupDataBase extends Component
         if (!Hash::check($this->AdminPassword, $UserAuth->password)) {
             $this->AdminPassword = "";
             session()->flash('danger', 'Contraseña incorrecta');
+        } 
+        else {
+            // GENERAMOS EL BACKUP DE LA BASE DE DATOS DESPACHANDOLO EN UN JOB
+            BackupDatabaseJob::dispatch();
+            $this->AdminPassword = "";
+            session()->flash('success', 'Copia de seguridad generada con éxito');
         }
-
-        // GENERAMOS EL BACKUP DE LA BASE DE DATOS DESPACHANDOLO EN UN JOB
-        BackupDatabaseJob::dispatch();
-        $this->AdminPassword = "";
-        session()->flash('success', 'Copia de seguridad generada con éxito');
     }
 }

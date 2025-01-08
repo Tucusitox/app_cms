@@ -26,8 +26,8 @@ class CrudPostController
         $rutaImg = "/" . $foto->getClientOriginalName();
         $request->file("PostImg")->move($destinoCarpeta, $rutaImg);
         $rutaFinalImg = $destinoCarpeta . $rutaImg; //DEFINIMOS LA RUTA DE LA IMAGEN
-
-        // GUARDAMOS EN LA BASE DE DATOS
+        
+        // GUARDAMOS EN LA BASE DE DATOS str_replace('<em>', '', str_replace('</em>', '', $request->post('PostBody'))),
         Post::insert([
             'fk_user' => Auth::id(),
             'post_code' => strtoupper(Str::random(6)),
@@ -65,7 +65,7 @@ class CrudPostController
 
         // GENERAMOS EL UPDATE EN LA TABLA "posts"
         $PostUpdate->post_tittle = $request->post('PostTittle');
-        $PostUpdate->post_body = $request->post('PostBody'); 
+        $PostUpdate->post_body = $request->post('PostBody');
         $PostUpdate->save();
 
         if ($admin != null) {

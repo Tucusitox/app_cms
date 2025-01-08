@@ -13,7 +13,7 @@ class PostHomePage extends Component
 
     public function render()
     {
-        $this->Posts = Post::orderBy('id_post', 'desc')->get();
+        $this->Posts = Post::orderBy('id_post', 'asc')->get();
         return view('livewire.post-home-page');
     }
 

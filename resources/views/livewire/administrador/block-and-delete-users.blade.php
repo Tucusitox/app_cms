@@ -61,7 +61,7 @@
 
                             <thead class="bg-body text-success border-top border-bottom border-success">
                                 <tr>
-                                    <th>Id usuario</th>
+                                    <th>Id</th>
                                     <th>Rol</th>
                                     <th>Nombre</th>
                                     <th>Correo</th>
@@ -72,11 +72,11 @@
                             <tbody>
                                 @foreach ($AllUsers as $item)
                                     <tr class="text-secondary-emphasis">
-                                        <td class="text-center">{{ $item->user_id }}</td>
+                                        <td>{{ $item->user_id }}</td>
                                         <td>{{ $item->rol_name }}</td>
                                         <td>{{ $item->user_name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->user_status }}</td>
+                                        <td>{{ $item->user_status == NUll ? "inactivo" : $item->user_status }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info me-2"
                                                 wire:click='openAndCloseModal("rol", {{ $item->user_id }})'>

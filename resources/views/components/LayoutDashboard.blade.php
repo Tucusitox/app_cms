@@ -67,7 +67,7 @@
     {{-- EXCRIPT PARA PREVISUALIZAR LA IMAGEN DE LOS FORMULARIOS --}}
     <script src="{{ asset('js/previewImage.js') }}"></script>
 
-    <!-- Axios -->
+    <!-- AXIOS -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- LOGICA PARA MODO OSCURO -->

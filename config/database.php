@@ -59,7 +59,6 @@ return [
             'engine' => null,
             'dump' => [
                 'dump_binary_path' => env('DB_MYSQLDUMP_PATH'),
-                'dump_command_path' => env('DB_MYSQLDUMP_PATH'),
                 'use_single_transaction' => true,
                 'timeout' => 60 * 5,
             ],
